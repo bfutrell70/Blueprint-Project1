@@ -34,12 +34,12 @@
             this.btnSelectSourceFolder = new System.Windows.Forms.Button();
             this.tvFoundBooks = new System.Windows.Forms.TreeView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbleBookCount = new System.Windows.Forms.Label();
             this.lblStorageSpaceDescription = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSaveNewStorageSpace = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtewStorageSpaceName = new System.Windows.Forms.TextBox();
             this.btnAddNewStorageSpace = new System.Windows.Forms.Button();
             this.dlVirtualStorageSpaces = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -48,7 +48,6 @@
             this.lblSize = new System.Windows.Forms.Label();
             this.lblFilePath = new System.Windows.Forms.Label();
             this.lblFileExtension = new System.Windows.Forms.Label();
-            this.lblFileName = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -73,6 +72,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -98,6 +98,7 @@
             this.btnSelectSourceFolder.TabIndex = 0;
             this.btnSelectSourceFolder.Text = "Select Source Folder";
             this.btnSelectSourceFolder.UseVisualStyleBackColor = true;
+            this.btnSelectSourceFolder.Click += new System.EventHandler(this.btnSelectSourceFolder_Click);
             // 
             // tvFoundBooks
             // 
@@ -108,12 +109,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lbleBookCount);
             this.groupBox1.Controls.Add(this.lblStorageSpaceDescription);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnSaveNewStorageSpace);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtewStorageSpaceName);
             this.groupBox1.Controls.Add(this.btnAddNewStorageSpace);
             this.groupBox1.Controls.Add(this.dlVirtualStorageSpaces);
             this.groupBox1.Location = new System.Drawing.Point(12, 246);
@@ -123,14 +124,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Virtual Storage Space";
             // 
-            // label3
+            // lbleBookCount
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "IbleBookCount";
+            this.lbleBookCount.AutoSize = true;
+            this.lbleBookCount.Location = new System.Drawing.Point(7, 45);
+            this.lbleBookCount.Name = "lbleBookCount";
+            this.lbleBookCount.Size = new System.Drawing.Size(0, 13);
+            this.lbleBookCount.TabIndex = 10;
             // 
             // lblStorageSpaceDescription
             // 
@@ -167,12 +167,12 @@
             this.btnSaveNewStorageSpace.Text = "save";
             this.btnSaveNewStorageSpace.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtewStorageSpaceName
             // 
-            this.textBox1.Location = new System.Drawing.Point(231, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 20);
-            this.textBox1.TabIndex = 5;
+            this.txtewStorageSpaceName.Location = new System.Drawing.Point(231, 19);
+            this.txtewStorageSpaceName.Name = "txtewStorageSpaceName";
+            this.txtewStorageSpaceName.Size = new System.Drawing.Size(136, 20);
+            this.txtewStorageSpaceName.TabIndex = 5;
             // 
             // btnAddNewStorageSpace
             // 
@@ -249,14 +249,6 @@
             this.lblFileExtension.Name = "lblFileExtension";
             this.lblFileExtension.Size = new System.Drawing.Size(216, 21);
             this.lblFileExtension.TabIndex = 7;
-            // 
-            // lblFileName
-            // 
-            this.lblFileName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblFileName.Location = new System.Drawing.Point(98, 15);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(216, 21);
-            this.lblFileName.TabIndex = 6;
             // 
             // label9
             // 
@@ -476,6 +468,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Title:";
             // 
+            // lblFileName
+            // 
+            this.lblFileName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblFileName.Location = new System.Drawing.Point(98, 15);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(216, 21);
+            this.lblFileName.TabIndex = 6;
+            // 
             // ImportBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -506,12 +506,12 @@
         private System.Windows.Forms.Button btnSelectSourceFolder;
         private System.Windows.Forms.TreeView tvFoundBooks;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbleBookCount;
         private System.Windows.Forms.Label lblStorageSpaceDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnSaveNewStorageSpace;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtewStorageSpaceName;
         private System.Windows.Forms.Button btnAddNewStorageSpace;
         private System.Windows.Forms.ComboBox dlVirtualStorageSpaces;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -522,7 +522,6 @@
         private System.Windows.Forms.Label lblSize;
         private System.Windows.Forms.Label lblFilePath;
         private System.Windows.Forms.Label lblFileExtension;
-        private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -545,5 +544,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label lblFileName;
     }
 }
