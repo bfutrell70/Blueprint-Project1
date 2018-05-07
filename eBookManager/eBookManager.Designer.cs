@@ -1,6 +1,6 @@
 ﻿namespace eBookManager
 {
-    partial class Form1
+    partial class eBookManager
     {
         /// <summary>
         /// Required designer variable.
