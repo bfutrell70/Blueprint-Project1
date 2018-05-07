@@ -110,12 +110,12 @@ namespace eBookManager
                 var (dateCreated, dateLastAccessed, fileName, fileExtension, fileLength, hasError) = engine.GetFileProperties(e.Node.Tag.ToString());
                 if (!hasError)
                 {
-                    lblFileName.Text = fileName;
-                    lblFileExtension.Text = fileExtension;
+                    txtFileName.Text = fileName;
+                    txtFileExtension.Text = fileExtension;
                     dtCreated.Value = dateCreated;
                     dtLastAccessed.Value = dateLastAccessed;
-                    lblFilePath.Text = e.Node.Tag.ToString();
-                    lblSize.Text = $"{Round(fileLength.ToMegabytes(), 2).ToString()} MB";
+                    txtFilePath.Text = e.Node.Tag.ToString();
+                    txtFileSize.Text = $"{Round(fileLength.ToMegabytes(), 2).ToString()} MB";
                 }
             }
 
@@ -170,10 +170,213 @@ namespace eBookManager
             
             if (selectedValue == (int)StorageSpaceSelection.New) // -9999
             {
-                txtewStorageSpaceName.Visible = true;
+                txtNewStorageSpaceName.Visible = true;
                 lblStorageSpaceDescription.Visible = true;
-                
+                txtStorageSpaceDescription.ReadOnly = false;
+                btnSaveNewStorageSpace.Visible = true;
+                btnCancelNewStorageSpaceSave.Visible = true;
+                dlVirtualStorageSpaces.Enabled = false;
+                btnAddNewStorageSpace.Enabled = false;
+                lbleBookCount.Text = string.Empty;                
             }
+            else if (selectedValue != (int)StorageSpaceSelection.NoSelection)
+            {
+                // find the contents of the selected storage space
+                int contentCount = (from c in spaces
+                                    where c.ID == selectedValue
+                                    select c).Count();
+                if (contentCount > 0)
+                {
+                    StorageSpace selectedSpace = (from c in spaces
+                                                  where c.ID == selectedValue
+                                                  select c).First();
+                    txtStorageSpaceDescription.Text = selectedSpace.Description;
+
+                    List<Document> eBooks = (selectedSpace.BookList == null) ? new List<Document> { } : selectedSpace.BookList;
+                    lbleBookCount.Text = $"Storage Space contains {eBooks.Count()} {(eBooks.Count() == 1 ? "eBook" : "eBooks")}";
+                }
+            }
+            else
+            {
+                lbleBookCount.Text = "";
+            }
+        }
+
+        private void btnSaveNewStorageSpace_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtNewStorageSpaceName.Text.Length != 0)
+                {
+                    string newName = txtNewStorageSpaceName.Text;
+
+                    // throw expressions: bool spaceExists = (spaceExists = false) ? return false : throw exception
+
+                    // out variables
+                    bool spaceExists = (!spaces.StorageSpaceExists(newName, out int nextID)) ?
+                        false :
+                        throw new Exception("The storage space you are trying to add already exists");
+
+                    if (!spaceExists)
+                    {
+                        StorageSpace newSpace = new StorageSpace();
+                        newSpace.Name = newName;
+                        newSpace.ID = nextID;
+                        newSpace.Description = txtStorageSpaceDescription.Text;
+                        spaces.Add(newSpace);
+                        PopulateStorageSpacesList();
+
+                        // Save new Storage Space Name
+                        txtNewStorageSpaceName.Clear();
+                        txtNewStorageSpaceName.Visible = false;
+                        lblStorageSpaceDescription.Visible = false;
+                        txtStorageSpaceDescription.ReadOnly = true;
+                        txtStorageSpaceDescription.Clear();
+                        btnSaveNewStorageSpace.Visible = false;
+                        btnCancelNewStorageSpaceSave.Visible = false;
+                        dlVirtualStorageSpaces.Enabled = true;
+                        btnAddNewStorageSpace.Enabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                txtNewStorageSpaceName.SelectAll();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAddeBookToStorageSpace_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedStorageSpaceID = dlVirtualStorageSpaces.SelectedValue.ToString().ToInt();
+                if ((selectedStorageSpaceID != (int)StorageSpaceSelection.NoSelection) &&
+                    (selectedStorageSpaceID != (int)StorageSpaceSelection.New))
+                {
+                    UpdateStorageSpaceBooks(selectedStorageSpaceID);
+                }
+                else
+                    throw new Exception("Please select a Storage Space to add your eBook to");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void UpdateStorageSpaceBooks(int storageSpaceID)
+        {
+            try
+            {
+                int iCount = (from s in spaces
+                              where s.ID == storageSpaceID
+                              select s).Count();
+
+                if (iCount > 0) // the space will always exist
+                {
+                    // Update
+                    StorageSpace existingSpace = (from s in spaces
+                                                  where s.ID == storageSpaceID
+                                                  select s).First();
+                    List<Document> ebooks = existingSpace.BookList;
+
+                    int iBooksExist = 
+                        (ebooks != null) ? 
+                        (from b in ebooks where $"{b.FileName}".Equals($"{txtFileName.Text.Trim()}") select b).Count() : 
+                        0;
+
+                    if (iBooksExist > 0)
+                    {
+                        // update exisitng book
+                        DialogResult dlgResult = 
+                            MessageBox.Show($"A book with the same name has been found in Storage Space {existingSpace.Name}. Do you want to replace the existing book entry with this one?", 
+                            "Duplicate Title", 
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button2);
+
+                        if (dlgResult == DialogResult.Yes)
+                        {
+                            Document exisitngBook = (from b in ebooks
+                                                     where $"{b.FileName}".Equals($"{txtFileName.Text.Trim()}")
+                                                     select b).First();
+
+                            exisitngBook.FileName = txtFileName.Text;
+                            exisitngBook.Extension = txtFileExtension.Text;
+                            exisitngBook.LastAccessed = dtLastAccessed.Value;
+                            exisitngBook.Created = dtCreated.Value;
+                            exisitngBook.FilePath = txtFilePath.Text;
+                            exisitngBook.Title = txtTitle.Text;
+                            exisitngBook.Author = txtAuthor.Text;
+                            exisitngBook.Publisher = txtPublisher.Text;
+                            exisitngBook.Price = txtPrice.Text;
+                            exisitngBook.ISBN = txtISBN.Text;
+                            exisitngBook.PublishDate = dtDatePublished.Value;
+                            exisitngBook.Category = txtCategory.Text;
+                        }
+                        else
+                        {
+                            // Insert new book
+                            Document newBook = new Document
+                            {
+                                FileName = txtFileName.Text,
+                                Extension = txtFileExtension.Text,
+                                LastAccessed = dtLastAccessed.Value,
+                                Created = dtCreated.Value,
+                                FilePath = txtFilePath.Text,
+                                FileSize = txtFileSize.Text,
+                                Title = txtTitle.Text,
+                                Author = txtAuthor.Text,
+                                Publisher = txtPublisher.Text,
+                                Price = txtPrice.Text,
+                                ISBN = txtISBN.Text,
+                                PublishDate = dtDatePublished.Value,
+                                Category = txtCategory.Text
+                            };
+
+                            if (ebooks == null)
+                                ebooks = new List<Document>();
+
+                            ebooks.Add(newBook);
+                            existingSpace.BookList = ebooks;
+                        }
+                    }
+
+                    spaces.WriteToDataStore(_jsonPath);
+                    PopulateStorageSpacesList();
+                    MessageBox.Show("Book added");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCancelNewStorageSpaceSave_Click(object sender, EventArgs e)
+        {
+            txtNewStorageSpaceName.Clear();
+            txtNewStorageSpaceName.Visible = false;
+            lblStorageSpaceDescription.Visible = false;
+            txtStorageSpaceDescription.ReadOnly = true;
+            txtStorageSpaceDescription.Clear();
+            btnSaveNewStorageSpace.Visible = false;
+            btnCancelNewStorageSpaceSave.Visible = false;
+            dlVirtualStorageSpaces.Enabled = true;
+            btnAddNewStorageSpace.Enabled = true;
+        }
+
+        private void btnAddNewStorageSpace_Click(object sender, EventArgs e)
+        {
+            txtNewStorageSpaceName.Visible = true;
+            lblStorageSpaceDescription.Visible = true;
+            txtStorageSpaceDescription.ReadOnly = false;
+            btnSaveNewStorageSpace.Visible = true;
+            btnCancelNewStorageSpaceSave.Visible = true;
+            dlVirtualStorageSpaces.Enabled = false;
+            btnAddNewStorageSpace.Enabled = false;
         }
     }
 }
