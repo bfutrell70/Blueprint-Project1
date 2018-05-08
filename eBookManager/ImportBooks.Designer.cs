@@ -34,6 +34,7 @@
             this.btnSelectSourceFolder = new System.Windows.Forms.Button();
             this.tvFoundBooks = new System.Windows.Forms.TreeView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtStorageSpaceDescription = new System.Windows.Forms.TextBox();
             this.lbleBookCount = new System.Windows.Forms.Label();
             this.lblStorageSpaceDescription = new System.Windows.Forms.Label();
             this.btnCancelNewStorageSpaceSave = new System.Windows.Forms.Button();
@@ -42,6 +43,10 @@
             this.btnAddNewStorageSpace = new System.Windows.Forms.Button();
             this.dlVirtualStorageSpaces = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtFileSize = new System.Windows.Forms.TextBox();
+            this.txtFilePath = new System.Windows.Forms.TextBox();
+            this.txtFileExtension = new System.Windows.Forms.TextBox();
+            this.txtFileName = new System.Windows.Forms.TextBox();
             this.dtCreated = new System.Windows.Forms.DateTimePicker();
             this.dtLastAccessed = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
@@ -68,11 +73,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtStorageSpaceDescription = new System.Windows.Forms.TextBox();
-            this.txtFileName = new System.Windows.Forms.TextBox();
-            this.txtFileExtension = new System.Windows.Forms.TextBox();
-            this.txtFilePath = new System.Windows.Forms.TextBox();
-            this.txtFileSize = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -106,6 +106,7 @@
             this.tvFoundBooks.Name = "tvFoundBooks";
             this.tvFoundBooks.Size = new System.Drawing.Size(499, 190);
             this.tvFoundBooks.TabIndex = 1;
+            this.tvFoundBooks.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvFoundBooks_AfterSelect);
             // 
             // groupBox1
             // 
@@ -123,6 +124,14 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Virtual Storage Space";
+            // 
+            // txtStorageSpaceDescription
+            // 
+            this.txtStorageSpaceDescription.Location = new System.Drawing.Point(234, 62);
+            this.txtStorageSpaceDescription.Multiline = true;
+            this.txtStorageSpaceDescription.Name = "txtStorageSpaceDescription";
+            this.txtStorageSpaceDescription.Size = new System.Drawing.Size(257, 98);
+            this.txtStorageSpaceDescription.TabIndex = 11;
             // 
             // lbleBookCount
             // 
@@ -185,6 +194,7 @@
             this.dlVirtualStorageSpaces.Name = "dlVirtualStorageSpaces";
             this.dlVirtualStorageSpaces.Size = new System.Drawing.Size(175, 21);
             this.dlVirtualStorageSpaces.TabIndex = 3;
+            this.dlVirtualStorageSpaces.SelectedIndexChanged += new System.EventHandler(this.dlVirtualStorageSpaces_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -206,6 +216,34 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "File Details";
+            // 
+            // txtFileSize
+            // 
+            this.txtFileSize.Location = new System.Drawing.Point(98, 143);
+            this.txtFileSize.Name = "txtFileSize";
+            this.txtFileSize.Size = new System.Drawing.Size(216, 20);
+            this.txtFileSize.TabIndex = 15;
+            // 
+            // txtFilePath
+            // 
+            this.txtFilePath.Location = new System.Drawing.Point(98, 117);
+            this.txtFilePath.Name = "txtFilePath";
+            this.txtFilePath.Size = new System.Drawing.Size(216, 20);
+            this.txtFilePath.TabIndex = 14;
+            // 
+            // txtFileExtension
+            // 
+            this.txtFileExtension.Location = new System.Drawing.Point(98, 39);
+            this.txtFileExtension.Name = "txtFileExtension";
+            this.txtFileExtension.Size = new System.Drawing.Size(216, 20);
+            this.txtFileExtension.TabIndex = 13;
+            // 
+            // txtFileName
+            // 
+            this.txtFileName.Location = new System.Drawing.Point(98, 13);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(216, 20);
+            this.txtFileName.TabIndex = 12;
             // 
             // dtCreated
             // 
@@ -440,42 +478,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Title:";
             // 
-            // txtStorageSpaceDescription
-            // 
-            this.txtStorageSpaceDescription.Location = new System.Drawing.Point(234, 62);
-            this.txtStorageSpaceDescription.Multiline = true;
-            this.txtStorageSpaceDescription.Name = "txtStorageSpaceDescription";
-            this.txtStorageSpaceDescription.Size = new System.Drawing.Size(257, 98);
-            this.txtStorageSpaceDescription.TabIndex = 11;
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Location = new System.Drawing.Point(98, 13);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(216, 20);
-            this.txtFileName.TabIndex = 12;
-            // 
-            // txtFileExtension
-            // 
-            this.txtFileExtension.Location = new System.Drawing.Point(98, 39);
-            this.txtFileExtension.Name = "txtFileExtension";
-            this.txtFileExtension.Size = new System.Drawing.Size(216, 20);
-            this.txtFileExtension.TabIndex = 13;
-            // 
-            // txtFilePath
-            // 
-            this.txtFilePath.Location = new System.Drawing.Point(98, 117);
-            this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(216, 20);
-            this.txtFilePath.TabIndex = 14;
-            // 
-            // txtFileSize
-            // 
-            this.txtFileSize.Location = new System.Drawing.Point(98, 143);
-            this.txtFileSize.Name = "txtFileSize";
-            this.txtFileSize.Size = new System.Drawing.Size(216, 20);
-            this.txtFileSize.TabIndex = 15;
-            // 
             // ImportBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,6 +491,7 @@
             this.Controls.Add(this.btnSelectSourceFolder);
             this.Name = "ImportBooks";
             this.Text = "ImportBooks";
+            this.Load += new System.EventHandler(this.ImportBooks_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
