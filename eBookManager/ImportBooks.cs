@@ -279,10 +279,10 @@ namespace eBookManager
                     StorageSpace existingSpace = (from s in spaces
                                                   where s.ID == storageSpaceID
                                                   select s).First();
+
                     List<Document> ebooks = existingSpace.BookList;
 
-                    int iBooksExist = 
-                        (ebooks != null) ? 
+                    int iBooksExist = (ebooks != null) ? 
                         (from b in ebooks where $"{b.FileName}".Equals($"{txtFileName.Text.Trim()}") select b).Count() : 
                         0;
 

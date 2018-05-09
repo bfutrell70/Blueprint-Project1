@@ -121,7 +121,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 246);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(499, 192);
-            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Virtual Storage Space";
             // 
@@ -131,7 +131,7 @@
             this.txtStorageSpaceDescription.Multiline = true;
             this.txtStorageSpaceDescription.Name = "txtStorageSpaceDescription";
             this.txtStorageSpaceDescription.Size = new System.Drawing.Size(257, 98);
-            this.txtStorageSpaceDescription.TabIndex = 11;
+            this.txtStorageSpaceDescription.TabIndex = 3;
             // 
             // lbleBookCount
             // 
@@ -139,7 +139,7 @@
             this.lbleBookCount.Location = new System.Drawing.Point(7, 45);
             this.lbleBookCount.Name = "lbleBookCount";
             this.lbleBookCount.Size = new System.Drawing.Size(0, 13);
-            this.lbleBookCount.TabIndex = 10;
+            this.lbleBookCount.TabIndex = 2;
             // 
             // lblStorageSpaceDescription
             // 
@@ -155,7 +155,7 @@
             this.btnCancelNewStorageSpaceSave.Location = new System.Drawing.Point(439, 17);
             this.btnCancelNewStorageSpaceSave.Name = "btnCancelNewStorageSpaceSave";
             this.btnCancelNewStorageSpaceSave.Size = new System.Drawing.Size(52, 23);
-            this.btnCancelNewStorageSpaceSave.TabIndex = 7;
+            this.btnCancelNewStorageSpaceSave.TabIndex = 5;
             this.btnCancelNewStorageSpaceSave.Text = "cancel";
             this.btnCancelNewStorageSpaceSave.UseVisualStyleBackColor = true;
             this.btnCancelNewStorageSpaceSave.Click += new System.EventHandler(this.btnCancelNewStorageSpaceSave_Click);
@@ -165,7 +165,7 @@
             this.btnSaveNewStorageSpace.Location = new System.Drawing.Point(373, 17);
             this.btnSaveNewStorageSpace.Name = "btnSaveNewStorageSpace";
             this.btnSaveNewStorageSpace.Size = new System.Drawing.Size(60, 23);
-            this.btnSaveNewStorageSpace.TabIndex = 6;
+            this.btnSaveNewStorageSpace.TabIndex = 4;
             this.btnSaveNewStorageSpace.Text = "save";
             this.btnSaveNewStorageSpace.UseVisualStyleBackColor = true;
             this.btnSaveNewStorageSpace.Click += new System.EventHandler(this.btnSaveNewStorageSpace_Click);
@@ -175,7 +175,7 @@
             this.txtNewStorageSpaceName.Location = new System.Drawing.Point(231, 19);
             this.txtNewStorageSpaceName.Name = "txtNewStorageSpaceName";
             this.txtNewStorageSpaceName.Size = new System.Drawing.Size(136, 20);
-            this.txtNewStorageSpaceName.TabIndex = 5;
+            this.txtNewStorageSpaceName.TabIndex = 2;
             // 
             // btnAddNewStorageSpace
             // 
@@ -183,7 +183,7 @@
             this.btnAddNewStorageSpace.Location = new System.Drawing.Point(187, 17);
             this.btnAddNewStorageSpace.Name = "btnAddNewStorageSpace";
             this.btnAddNewStorageSpace.Size = new System.Drawing.Size(38, 23);
-            this.btnAddNewStorageSpace.TabIndex = 4;
+            this.btnAddNewStorageSpace.TabIndex = 1;
             this.btnAddNewStorageSpace.UseVisualStyleBackColor = true;
             this.btnAddNewStorageSpace.Click += new System.EventHandler(this.btnAddNewStorageSpace_Click);
             // 
@@ -193,7 +193,7 @@
             this.dlVirtualStorageSpaces.Location = new System.Drawing.Point(6, 19);
             this.dlVirtualStorageSpaces.Name = "dlVirtualStorageSpaces";
             this.dlVirtualStorageSpaces.Size = new System.Drawing.Size(175, 21);
-            this.dlVirtualStorageSpaces.TabIndex = 3;
+            this.dlVirtualStorageSpaces.TabIndex = 0;
             this.dlVirtualStorageSpaces.SelectedIndexChanged += new System.EventHandler(this.dlVirtualStorageSpaces_SelectedIndexChanged);
             // 
             // groupBox2
@@ -222,42 +222,42 @@
             this.txtFileSize.Location = new System.Drawing.Point(98, 143);
             this.txtFileSize.Name = "txtFileSize";
             this.txtFileSize.Size = new System.Drawing.Size(216, 20);
-            this.txtFileSize.TabIndex = 15;
+            this.txtFileSize.TabIndex = 5;
             // 
             // txtFilePath
             // 
             this.txtFilePath.Location = new System.Drawing.Point(98, 117);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(216, 20);
-            this.txtFilePath.TabIndex = 14;
+            this.txtFilePath.TabIndex = 4;
             // 
             // txtFileExtension
             // 
             this.txtFileExtension.Location = new System.Drawing.Point(98, 39);
             this.txtFileExtension.Name = "txtFileExtension";
             this.txtFileExtension.Size = new System.Drawing.Size(216, 20);
-            this.txtFileExtension.TabIndex = 13;
+            this.txtFileExtension.TabIndex = 1;
             // 
             // txtFileName
             // 
             this.txtFileName.Location = new System.Drawing.Point(98, 13);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(216, 20);
-            this.txtFileName.TabIndex = 12;
+            this.txtFileName.TabIndex = 0;
             // 
             // dtCreated
             // 
             this.dtCreated.Location = new System.Drawing.Point(98, 93);
             this.dtCreated.Name = "dtCreated";
             this.dtCreated.Size = new System.Drawing.Size(216, 20);
-            this.dtCreated.TabIndex = 11;
+            this.dtCreated.TabIndex = 3;
             // 
             // dtLastAccessed
             // 
             this.dtLastAccessed.Location = new System.Drawing.Point(98, 67);
             this.dtLastAccessed.Name = "dtLastAccessed";
             this.dtLastAccessed.Size = new System.Drawing.Size(216, 20);
-            this.dtLastAccessed.TabIndex = 10;
+            this.dtLastAccessed.TabIndex = 2;
             // 
             // label9
             // 
@@ -335,7 +335,7 @@
             this.groupBox3.Location = new System.Drawing.Point(517, 223);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(320, 215);
-            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Book Details";
             // 
@@ -344,7 +344,7 @@
             this.txtPrice.Location = new System.Drawing.Point(98, 81);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(216, 20);
-            this.txtPrice.TabIndex = 18;
+            this.txtPrice.TabIndex = 3;
             // 
             // btnAddeBookToStorageSpace
             // 
@@ -352,7 +352,7 @@
             this.btnAddeBookToStorageSpace.Location = new System.Drawing.Point(98, 186);
             this.btnAddeBookToStorageSpace.Name = "btnAddeBookToStorageSpace";
             this.btnAddeBookToStorageSpace.Size = new System.Drawing.Size(38, 23);
-            this.btnAddeBookToStorageSpace.TabIndex = 17;
+            this.btnAddeBookToStorageSpace.TabIndex = 8;
             this.btnAddeBookToStorageSpace.UseVisualStyleBackColor = true;
             this.btnAddeBookToStorageSpace.Click += new System.EventHandler(this.btnAddeBookToStorageSpace_Click);
             // 
@@ -361,7 +361,7 @@
             this.dtDatePublished.Location = new System.Drawing.Point(98, 120);
             this.dtDatePublished.Name = "dtDatePublished";
             this.dtDatePublished.Size = new System.Drawing.Size(200, 20);
-            this.dtDatePublished.TabIndex = 16;
+            this.dtDatePublished.TabIndex = 5;
             // 
             // dlClassification
             // 
@@ -369,42 +369,42 @@
             this.dlClassification.Location = new System.Drawing.Point(98, 162);
             this.dlClassification.Name = "dlClassification";
             this.dlClassification.Size = new System.Drawing.Size(121, 21);
-            this.dlClassification.TabIndex = 14;
+            this.dlClassification.TabIndex = 9;
             // 
             // txtCategory
             // 
             this.txtCategory.Location = new System.Drawing.Point(98, 140);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(216, 20);
-            this.txtCategory.TabIndex = 13;
+            this.txtCategory.TabIndex = 6;
             // 
             // txtISBN
             // 
             this.txtISBN.Location = new System.Drawing.Point(98, 101);
             this.txtISBN.Name = "txtISBN";
             this.txtISBN.Size = new System.Drawing.Size(216, 20);
-            this.txtISBN.TabIndex = 12;
+            this.txtISBN.TabIndex = 4;
             // 
             // txtPublisher
             // 
             this.txtPublisher.Location = new System.Drawing.Point(98, 60);
             this.txtPublisher.Name = "txtPublisher";
             this.txtPublisher.Size = new System.Drawing.Size(216, 20);
-            this.txtPublisher.TabIndex = 11;
+            this.txtPublisher.TabIndex = 2;
             // 
             // txtAuthor
             // 
             this.txtAuthor.Location = new System.Drawing.Point(98, 40);
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(216, 20);
-            this.txtAuthor.TabIndex = 10;
+            this.txtAuthor.TabIndex = 1;
             // 
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(98, 19);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(216, 20);
-            this.txtTitle.TabIndex = 9;
+            this.txtTitle.TabIndex = 0;
             // 
             // label16
             // 
