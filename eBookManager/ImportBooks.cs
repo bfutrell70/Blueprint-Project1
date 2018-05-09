@@ -265,89 +265,81 @@ namespace eBookManager
             }
         }
 
-        private void UpdateStorageSpaceBooks(int storageSpaceID)
+        private void UpdateStorageSpaceBooks(int storageSpaceId)
         {
             try
             {
                 int iCount = (from s in spaces
-                              where s.ID == storageSpaceID
+                              where s.ID == storageSpaceId
                               select s).Count();
-
-                if (iCount > 0) // the space will always exist
+                if (iCount > 0) // The space will always exist
                 {
                     // Update
                     StorageSpace existingSpace = (from s in spaces
-                                                  where s.ID == storageSpaceID
+                                                  where s.ID == storageSpaceId
                                                   select s).First();
 
                     List<Document> ebooks = existingSpace.BookList;
 
-                    int iBooksExist = (ebooks != null) ? 
-                        (from b in ebooks where $"{b.FileName}".Equals($"{txtFileName.Text.Trim()}") select b).Count() : 
-                        0;
+                    int iBooksExist = (ebooks != null) ? (from b in ebooks
+                                                          where $"{b.FileName}".Equals($"{txtFileName.Text.Trim()}")
+                                                          select b).Count() : 0;
 
                     if (iBooksExist > 0)
                     {
-                        // update exisitng book
-                        DialogResult dlgResult = 
-                            MessageBox.Show($"A book with the same name has been found in Storage Space {existingSpace.Name}. Do you want to replace the existing book entry with this one?", 
-                            "Duplicate Title", 
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning,
-                            MessageBoxDefaultButton.Button2);
-
+                        // Update existing book
+                        DialogResult dlgResult = MessageBox.Show($"A book with the same name has been found in Storage Space {existingSpace.Name}. Do you want to replace the existing book entry with this one?", "Duplicate Title", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (dlgResult == DialogResult.Yes)
                         {
-                            Document exisitngBook = (from b in ebooks
+                            Document existingBook = (from b in ebooks
                                                      where $"{b.FileName}".Equals($"{txtFileName.Text.Trim()}")
                                                      select b).First();
 
-                            exisitngBook.FileName = txtFileName.Text;
-                            exisitngBook.Extension = txtFileExtension.Text;
-                            exisitngBook.LastAccessed = dtLastAccessed.Value;
-                            exisitngBook.Created = dtCreated.Value;
-                            exisitngBook.FilePath = txtFilePath.Text;
-                            exisitngBook.Title = txtTitle.Text;
-                            exisitngBook.Author = txtAuthor.Text;
-                            exisitngBook.Publisher = txtPublisher.Text;
-                            exisitngBook.Price = txtPrice.Text;
-                            exisitngBook.ISBN = txtISBN.Text;
-                            exisitngBook.PublishDate = dtDatePublished.Value;
-                            exisitngBook.Category = txtCategory.Text;
-                        }
-                        else
-                        {
-                            // Insert new book
-                            Document newBook = new Document
-                            {
-                                FileName = txtFileName.Text,
-                                Extension = txtFileExtension.Text,
-                                LastAccessed = dtLastAccessed.Value,
-                                Created = dtCreated.Value,
-                                FilePath = txtFilePath.Text,
-                                FileSize = txtFileSize.Text,
-                                Title = txtTitle.Text,
-                                Author = txtAuthor.Text,
-                                Publisher = txtPublisher.Text,
-                                Price = txtPrice.Text,
-                                ISBN = txtISBN.Text,
-                                PublishDate = dtDatePublished.Value,
-                                Category = txtCategory.Text
-                            };
-
-                            if (ebooks == null)
-                                ebooks = new List<Document>();
-
-                            ebooks.Add(newBook);
-                            existingSpace.BookList = ebooks;
+                            existingBook.FileName = txtFileName.Text;
+                            existingBook.Extension = txtFileExtension.Text;
+                            existingBook.LastAccessed = dtLastAccessed.Value;
+                            existingBook.Created = dtCreated.Value;
+                            existingBook.FilePath = txtFilePath.Text;
+                            existingBook.FileSize = txtFileSize.Text;
+                            existingBook.Title = txtTitle.Text;
+                            existingBook.Author = txtAuthor.Text;
+                            existingBook.Publisher = txtPublisher.Text;
+                            existingBook.Price = txtPrice.Text;
+                            existingBook.ISBN = txtISBN.Text;
+                            existingBook.PublishDate = dtDatePublished.Value;
+                            existingBook.Category = txtCategory.Text;
                         }
                     }
+                    else
+                    {
+                        // Insert new book
+                        Document newBook = new Document();
+                        newBook.FileName = txtFileName.Text;
+                        newBook.Extension =txtFileExtension.Text;
+                        newBook.LastAccessed = dtLastAccessed.Value;
+                        newBook.Created = dtCreated.Value;
+                        newBook.FilePath = txtFilePath.Text;
+                        newBook.FileSize = txtFileSize.Text;
+                        newBook.Title = txtTitle.Text;
+                        newBook.Author = txtAuthor.Text;
+                        newBook.Publisher = txtPublisher.Text;
+                        newBook.Price = txtPrice.Text;
+                        newBook.ISBN = txtISBN.Text;
+                        newBook.PublishDate = dtDatePublished.Value;
+                        newBook.Category = txtCategory.Text;
+                        //newBook.Classification = dlClassification.SelectedText.ToString();
 
-                    spaces.WriteToDataStore(_jsonPath);
-                    PopulateStorageSpacesList();
-                    MessageBox.Show("Book added");
+                        if (ebooks == null)
+                            ebooks = new List<Document>();
+                        ebooks.Add(newBook);
+                        existingSpace.BookList = ebooks;
+                    }
 
                 }
+
+                spaces.WriteToDataStore(_jsonPath);
+                PopulateStorageSpacesList();
+                MessageBox.Show("Book added");
             }
             catch (Exception ex)
             {
