@@ -101,6 +101,7 @@
             this.lstStorageSpaces.SmallImageList = this.imageList1;
             this.lstStorageSpaces.TabIndex = 0;
             this.lstStorageSpaces.UseCompatibleStateImageBehavior = false;
+            this.lstStorageSpaces.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstStorageSpaces_MouseClick);
             // 
             // imageList1
             // 
@@ -153,14 +154,14 @@
             // importEBooksToolStripMenuItem
             // 
             this.importEBooksToolStripMenuItem.Name = "importEBooksToolStripMenuItem";
-            this.importEBooksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importEBooksToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.importEBooksToolStripMenuItem.Text = "Import eBooks";
             this.importEBooksToolStripMenuItem.Click += new System.EventHandler(this.importEBooksToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // gbeBookInfo
