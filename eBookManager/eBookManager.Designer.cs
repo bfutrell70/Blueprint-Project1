@@ -32,12 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(eBookManager));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lstStorageSpaces = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lstBooks = new System.Windows.Forms.ListView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.importEBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbeBookInfo = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtStorageSpaceDescription = new System.Windows.Forms.TextBox();
+            this.gbBookDetails = new System.Windows.Forms.GroupBox();
             this.dlClassification = new System.Windows.Forms.ComboBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.dtPublished = new System.Windows.Forms.DateTimePicker();
@@ -54,8 +59,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnReadEBook = new System.Windows.Forms.Button();
+            this.gbFileDetails = new System.Windows.Forms.GroupBox();
             this.dtCreated = new System.Windows.Forms.DateTimePicker();
             this.dtLastAccessed = new System.Windows.Forms.DateTimePicker();
             this.txtSize = new System.Windows.Forms.TextBox();
@@ -68,18 +73,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.importEBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtStorageSpaceDescription = new System.Windows.Forms.TextBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gbeBookInfo.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.gbBookDetails.SuspendLayout();
+            this.gbFileDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -102,6 +102,14 @@
             this.lstStorageSpaces.TabIndex = 0;
             this.lstStorageSpaces.UseCompatibleStateImageBehavior = false;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "storage_space_cloud.png");
+            this.imageList1.Images.SetKeyName(1, "eBook.png");
+            this.imageList1.Images.SetKeyName(2, "no_eBook.png");
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lstBooks);
@@ -121,6 +129,7 @@
             this.lstBooks.SmallImageList = this.imageList1;
             this.lstBooks.TabIndex = 0;
             this.lstBooks.UseCompatibleStateImageBehavior = false;
+            this.lstBooks.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstBooks_MouseClick);
             // 
             // menuStrip1
             // 
@@ -141,43 +150,74 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // groupBox3
+            // importEBooksToolStripMenuItem
             // 
-            this.groupBox3.Controls.Add(this.groupBox6);
-            this.groupBox3.Controls.Add(this.groupBox5);
-            this.groupBox3.Controls.Add(this.groupBox4);
-            this.groupBox3.Location = new System.Drawing.Point(661, 27);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(396, 581);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "eBook Info";
+            this.importEBooksToolStripMenuItem.Name = "importEBooksToolStripMenuItem";
+            this.importEBooksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importEBooksToolStripMenuItem.Text = "Import eBooks";
+            this.importEBooksToolStripMenuItem.Click += new System.EventHandler(this.importEBooksToolStripMenuItem_Click);
             // 
-            // groupBox5
+            // exitToolStripMenuItem
             // 
-            this.groupBox5.Controls.Add(this.dlClassification);
-            this.groupBox5.Controls.Add(this.txtCategory);
-            this.groupBox5.Controls.Add(this.dtPublished);
-            this.groupBox5.Controls.Add(this.txtISBN);
-            this.groupBox5.Controls.Add(this.txtPrice);
-            this.groupBox5.Controls.Add(this.txtPublisher);
-            this.groupBox5.Controls.Add(this.txtAuthor);
-            this.groupBox5.Controls.Add(this.txtTitle);
-            this.groupBox5.Controls.Add(this.label14);
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.label12);
-            this.groupBox5.Controls.Add(this.label11);
-            this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Controls.Add(this.button1);
-            this.groupBox5.Location = new System.Drawing.Point(6, 203);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(384, 276);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Book Details";
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // gbeBookInfo
+            // 
+            this.gbeBookInfo.Controls.Add(this.groupBox6);
+            this.gbeBookInfo.Controls.Add(this.gbBookDetails);
+            this.gbeBookInfo.Controls.Add(this.gbFileDetails);
+            this.gbeBookInfo.Location = new System.Drawing.Point(661, 27);
+            this.gbeBookInfo.Name = "gbeBookInfo";
+            this.gbeBookInfo.Size = new System.Drawing.Size(396, 581);
+            this.gbeBookInfo.TabIndex = 3;
+            this.gbeBookInfo.TabStop = false;
+            this.gbeBookInfo.Text = "eBook Info";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtStorageSpaceDescription);
+            this.groupBox6.Location = new System.Drawing.Point(7, 486);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(383, 89);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Virtual Storage Space Info";
+            // 
+            // txtStorageSpaceDescription
+            // 
+            this.txtStorageSpaceDescription.Location = new System.Drawing.Point(7, 20);
+            this.txtStorageSpaceDescription.Multiline = true;
+            this.txtStorageSpaceDescription.Name = "txtStorageSpaceDescription";
+            this.txtStorageSpaceDescription.Size = new System.Drawing.Size(370, 63);
+            this.txtStorageSpaceDescription.TabIndex = 0;
+            // 
+            // gbBookDetails
+            // 
+            this.gbBookDetails.Controls.Add(this.dlClassification);
+            this.gbBookDetails.Controls.Add(this.txtCategory);
+            this.gbBookDetails.Controls.Add(this.dtPublished);
+            this.gbBookDetails.Controls.Add(this.txtISBN);
+            this.gbBookDetails.Controls.Add(this.txtPrice);
+            this.gbBookDetails.Controls.Add(this.txtPublisher);
+            this.gbBookDetails.Controls.Add(this.txtAuthor);
+            this.gbBookDetails.Controls.Add(this.txtTitle);
+            this.gbBookDetails.Controls.Add(this.label14);
+            this.gbBookDetails.Controls.Add(this.label13);
+            this.gbBookDetails.Controls.Add(this.label12);
+            this.gbBookDetails.Controls.Add(this.label11);
+            this.gbBookDetails.Controls.Add(this.label10);
+            this.gbBookDetails.Controls.Add(this.label9);
+            this.gbBookDetails.Controls.Add(this.label8);
+            this.gbBookDetails.Controls.Add(this.label7);
+            this.gbBookDetails.Controls.Add(this.btnReadEBook);
+            this.gbBookDetails.Location = new System.Drawing.Point(6, 203);
+            this.gbBookDetails.Name = "gbBookDetails";
+            this.gbBookDetails.Size = new System.Drawing.Size(384, 276);
+            this.gbBookDetails.TabIndex = 1;
+            this.gbBookDetails.TabStop = false;
+            this.gbBookDetails.Text = "Book Details";
             // 
             // dlClassification
             // 
@@ -308,37 +348,38 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "Title:";
             // 
-            // button1
+            // btnReadEBook
             // 
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(104, 231);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 38);
-            this.button1.TabIndex = 3;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReadEBook.AutoSize = true;
+            this.btnReadEBook.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnReadEBook.Image = ((System.Drawing.Image)(resources.GetObject("btnReadEBook.Image")));
+            this.btnReadEBook.Location = new System.Drawing.Point(104, 231);
+            this.btnReadEBook.Name = "btnReadEBook";
+            this.btnReadEBook.Size = new System.Drawing.Size(38, 38);
+            this.btnReadEBook.TabIndex = 3;
+            this.btnReadEBook.UseVisualStyleBackColor = true;
+            this.btnReadEBook.Click += new System.EventHandler(this.btnReadEBook_Click);
             // 
-            // groupBox4
+            // gbFileDetails
             // 
-            this.groupBox4.Controls.Add(this.dtCreated);
-            this.groupBox4.Controls.Add(this.dtLastAccessed);
-            this.groupBox4.Controls.Add(this.txtSize);
-            this.groupBox4.Controls.Add(this.txtFilePath);
-            this.groupBox4.Controls.Add(this.txtFileExtension);
-            this.groupBox4.Controls.Add(this.txtFileName);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Location = new System.Drawing.Point(6, 19);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(384, 178);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "File Details";
+            this.gbFileDetails.Controls.Add(this.dtCreated);
+            this.gbFileDetails.Controls.Add(this.dtLastAccessed);
+            this.gbFileDetails.Controls.Add(this.txtSize);
+            this.gbFileDetails.Controls.Add(this.txtFilePath);
+            this.gbFileDetails.Controls.Add(this.txtFileExtension);
+            this.gbFileDetails.Controls.Add(this.txtFileName);
+            this.gbFileDetails.Controls.Add(this.label6);
+            this.gbFileDetails.Controls.Add(this.label5);
+            this.gbFileDetails.Controls.Add(this.label4);
+            this.gbFileDetails.Controls.Add(this.label3);
+            this.gbFileDetails.Controls.Add(this.label2);
+            this.gbFileDetails.Controls.Add(this.label1);
+            this.gbFileDetails.Location = new System.Drawing.Point(6, 19);
+            this.gbFileDetails.Name = "gbFileDetails";
+            this.gbFileDetails.Size = new System.Drawing.Size(384, 178);
+            this.gbFileDetails.TabIndex = 0;
+            this.gbFileDetails.TabStop = false;
+            this.gbFileDetails.Text = "File Details";
             // 
             // dtCreated
             // 
@@ -436,50 +477,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "File Name:";
             // 
-            // importEBooksToolStripMenuItem
-            // 
-            this.importEBooksToolStripMenuItem.Name = "importEBooksToolStripMenuItem";
-            this.importEBooksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.importEBooksToolStripMenuItem.Text = "Import eBooks";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.txtStorageSpaceDescription);
-            this.groupBox6.Location = new System.Drawing.Point(7, 486);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(383, 89);
-            this.groupBox6.TabIndex = 2;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Virtual Storage Space Info";
-            // 
-            // txtStorageSpaceDescription
-            // 
-            this.txtStorageSpaceDescription.Location = new System.Drawing.Point(7, 20);
-            this.txtStorageSpaceDescription.Multiline = true;
-            this.txtStorageSpaceDescription.Name = "txtStorageSpaceDescription";
-            this.txtStorageSpaceDescription.Size = new System.Drawing.Size(370, 63);
-            this.txtStorageSpaceDescription.TabIndex = 0;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "storage_space_cloud.png");
-            this.imageList1.Images.SetKeyName(1, "eBook.png");
-            this.imageList1.Images.SetKeyName(2, "no_eBook.png");
-            // 
             // eBookManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1069, 696);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.gbeBookInfo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -491,13 +494,13 @@
             this.groupBox2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gbeBookInfo.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.gbBookDetails.ResumeLayout(false);
+            this.gbBookDetails.PerformLayout();
+            this.gbFileDetails.ResumeLayout(false);
+            this.gbFileDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -511,10 +514,10 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ListView lstBooks;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbeBookInfo;
+        private System.Windows.Forms.GroupBox gbBookDetails;
+        private System.Windows.Forms.Button btnReadEBook;
+        private System.Windows.Forms.GroupBox gbFileDetails;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

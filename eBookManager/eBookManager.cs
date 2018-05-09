@@ -85,5 +85,67 @@ namespace eBookManager
                 lstBooks.Items.Add(book);
             }
         }
+
+        private void ClearSelectedBook()
+        {
+            foreach (Control ctrl in gbBookDetails.Controls)
+            {
+                if (ctrl is TextBox)
+                    ctrl.Text = string.Empty;
+            }
+
+            foreach (Control ctrl in gbFileDetails.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    ctrl.Text = string.Empty;
+                }
+            }
+
+            dtLastAccessed.Value = DateTime.Now;
+            dtCreated.Value = DateTime.Now;
+            dtPublished.Value = DateTime.Now;
+        }
+
+        private void importEBooksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportBooks import = new ImportBooks();
+            import.ShowDialog();
+            spaces = spaces.ReadFromDataStore(_jsonPath);
+            PopulateStorageSpaceList();
+        }
+
+        private void lstBooks_MouseClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem selectedBook = lstBooks.SelectedItems[0];
+            if (!string.IsNullOrEmpty(selectedBook.Tag.ToString()))
+            {
+                Document ebook = (Document)selectedBook.Tag;
+                txtFileName.Text = ebook.FileName;
+                txtFileExtension.Text = ebook.Extension;
+                dtLastAccessed.Value = ebook.LastAccessed;
+                dtCreated.Value = ebook.Created;
+                txtFilePath.Text = ebook.FilePath;
+                txtSize.Text = ebook.FileSize;
+                txtTitle.Text = ebook.Title;
+                txtAuthor.Text = ebook.Author;
+                txtPublisher.Text = ebook.Publisher;
+                txtPrice.Text = ebook.Price;
+                txtISBN.Text = ebook.ISBN;
+                dtPublished.Value = ebook.PublishDate;
+                txtCategory.Text = ebook.Category;
+
+            }
+        }
+
+        private void btnReadEBook_Click(object sender, EventArgs e)
+        {
+            string filePath = txtFilePath.Text;
+            FileInfo fi = new FileInfo(filePath);
+            if (fi.Exists)
+            {
+                Process.Start(Path.GetDirectoryName(filePath));
+            }
+        }
     }
 }
